@@ -7,9 +7,9 @@ namespace Empleados.Client.Services
     {
         private readonly HttpClient _httpClient;
 
-        public DepartamentoService(HttpClient _httpClient)
+        public DepartamentoService(HttpClient httpClient)
         {
-            _httpClient = _httpClient;
+            _httpClient = httpClient;
         }
 
 
