@@ -64,9 +64,9 @@ namespace Empleados.Server.Controllers
 
         //insert
         [HttpPost]
-        public async Task<ActionResult> Post(EmpleadoDTO empleado)
+        public async Task<ActionResult> Post(IEmpleadoDTO empleado)
         {
-            var responseApi = new ResponseAPI<List<EmpleadoDTO>>();
+            var responseApi = new ResponseAPI<bool>();
 
             try
             {
@@ -77,11 +77,20 @@ namespace Empleados.Server.Controllers
                     Sueldo=empleado.Sueldo,
                     FechaContrato=empleado.FechaContrato,
                 };
-                var sql = $@"INSERT INTO Medida(Medida) VALUES (@dbEmpleado); ";
+                var sql = $@"INSERT INTO 
+                            Empleado(NombreEmpleado,IdDepartamento,
+                            Sueldo,FechaContrato) VALUES 
+                            (@NombreEmpleado,@IdDepartamento,@Sueldo,@FechaContrato); ";
                 var datos = await Conexion.InsertUpdateParam(sql, dbEmpleado);
-                responseApi.EsCorrecto = true;
-                responseApi.Mensaje = "El empleado se guardo correctamente";
-                return Ok(responseApi);
+                if (datos != false){
+                    responseApi.EsCorrecto = datos;
+                    responseApi.Mensaje = "El empleado se guardo correctamente";
+                    return Ok(responseApi);
+                }
+                else
+                    responseApi.EsCorrecto = false;
+                responseApi.Mensaje = "No se pudo guardar empleado";
+                return BadRequest(responseApi);
             }
             catch (Exception)
             {
@@ -96,19 +105,19 @@ namespace Empleados.Server.Controllers
         [HttpPut]
         public async Task<ActionResult> Put(EmpleadoDTO empleado)
         {
-            var responseApi = new ResponseAPI<List<EmpleadoDTO>>();
+            var responseApi = new ResponseAPI<bool>();
 
             try
             {
                
-                var sql = $@"UPDATE NombreEmpleado=@NombreEmpleado,
-                                    IdDepartamento= @IdDepartamento,
-                                    Sueldo=@Sueldo
+                var sql = $@"UPDATE Empleado SET NombreEmpleado=@NombreEmpleado,
+                                    IdDepartamento=@IdDepartamento,
+                                    Sueldo=@Sueldo,
                                     FechaContrato=@FechaContrato
                                     WHERE IdEmpleado=@IdEmpleado; ";
                 var datos = await Conexion.InsertUpdateParam(sql, empleado);
 
-                responseApi.EsCorrecto = true;
+                responseApi.EsCorrecto = datos;
                 responseApi.Mensaje = "El empleado se actualizo correctamente";
                 return Ok(responseApi);
             }
@@ -125,13 +134,13 @@ namespace Empleados.Server.Controllers
         [HttpDelete("Delete/{ID}")]
         public async Task<ActionResult> delete(int ID)
         {
-            var responseApi = new ResponseAPI<List<EmpleadoDTO>>();
+            var responseApi = new ResponseAPI<bool>();
             try
             {
                 var sql = $@"DELETE Empleado WHERE IdEmpleado= {ID}; ";
                 var datos = await Conexion.InsertUpdate(sql);
 
-                responseApi.EsCorrecto = true;
+                responseApi.EsCorrecto = datos;
                 responseApi.Mensaje = "el empleado se elimino correctamente.";
                 return Ok(responseApi);
             }
