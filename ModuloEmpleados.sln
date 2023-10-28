@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empleados.Server", "Emplead
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empleados.Shared", "Empleados.Shared\Empleados.Shared.csproj", "{F7FE053B-57E3-46DA-B8F7-E4E078F6A43C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empleados.Client", "Empleados.Client\Empleados.Client.csproj", "{52F73E82-7527-458F-9EDD-1CAC951E16F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F7FE053B-57E3-46DA-B8F7-E4E078F6A43C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7FE053B-57E3-46DA-B8F7-E4E078F6A43C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7FE053B-57E3-46DA-B8F7-E4E078F6A43C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F73E82-7527-458F-9EDD-1CAC951E16F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F73E82-7527-458F-9EDD-1CAC951E16F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F73E82-7527-458F-9EDD-1CAC951E16F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F73E82-7527-458F-9EDD-1CAC951E16F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

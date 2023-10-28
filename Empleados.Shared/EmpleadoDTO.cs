@@ -27,5 +27,7 @@ namespace Empleados.Shared
 
         //La uso para obtener el nombre del departamento al que esta afiliado el empleado
         public DepartamentoDTO? Departamento { get; set; }
+
+        
     }
 }
